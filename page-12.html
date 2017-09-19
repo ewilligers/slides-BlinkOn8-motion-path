@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="third_party/web-animations-js/web-animations.dev.js"></script>
+  <script src="third_party/motion-path-polyfill.min.js"></script>
+  <script src="navigation.js"></script>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    #container {
+      position: absolute;
+      left: 10%;
+      top: 10%;
+
+      width: 80%;
+      height: 80%;
+      border: 3px solid var(--graphics);
+    }
+    #target {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--accent-graphics);
+    }
+    .spot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: mediumpurple;
+      border-radius: 0% 0% 0% 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #styles {
+      position: absolute;
+      left: 12%;
+      bottom: 14%;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div id="styles">
+    offset-path: circle(... at 300px 300px); /* various radii */<br>
+    offset-distance: 5000px;
+  </div>
+  <div id="container">
+  </div>
+  <script>
+    'use strict';
+
+    var index = 89;
+
+    function drawSpot() {
+      var spot = document.createElement('div');
+      spot.classList += 'spot';
+      var radius = index;
+
+      var spotKeyframe = {
+        offsetPosition: '0px 0px', // should not be needed
+        offsetPath: 'circle(' + radius + 'px at 300px 300px)',
+        offsetDistance: '5000px',
+        offsetAnchor: '50% 50%',
+      };
+      console.log(spotKeyframe);
+      container.appendChild(spot);
+      spot.animate([spotKeyframe, spotKeyframe], {fill: 'forwards'});
+
+      ++index;
+      if (index > 200 && index % 2 == 0)
+        drawSpot();
+      else if (index <= 320)
+        requestAnimationFrame(drawSpot);
+    }
+
+    requestAnimationFrame(drawSpot);
+
+  </script>
+</body>
+</html>

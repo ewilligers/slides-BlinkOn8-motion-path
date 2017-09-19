@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="third_party/web-animations-js/web-animations.dev.js"></script>
+  <script src="third_party/motion-path-polyfill.min.js"></script>
+  <script src="navigation.js"></script>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    #container {
+      position: absolute;
+      left: 10%;
+      top: 10%;
+
+      width: 80%;
+      height: 80%;
+      border: 3px solid var(--graphics);
+    }
+    #target {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--accent-graphics);
+    }
+    .spot {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background-color: mediumpurple;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #styles {
+      position: absolute;
+      left: 12%;
+      bottom: 14%;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div id="styles">
+    offset-position: 60% 30%;<br>
+    offset-path: ray(...deg closest-side contain); /* animated */<br>
+    offset-distance: 100%; 
+  </div>
+  <div id="container">
+    <div id="target"></div>
+  </div>
+  <script>
+    'use strict';
+    var staticKeyframe = {
+      offsetPosition: '60% 30%',
+      offsetAnchor: '50% 50%',
+      offsetDistance: '100%',
+    };
+    target.animate([staticKeyframe, staticKeyframe], {fill: 'forwards'});
+
+    var keyframes = [
+      { offsetPath: 'ray(0deg closest-side contain)' },
+      { offsetPath: 'ray(360deg closest-side contain)' },
+    ];
+    var timing = { duration: 7000, iterations: Infinity };
+    target.animate(keyframes, timing);
+
+    for (var index = 1; index <= 12; ++index) {
+      var spot = document.createElement('div');
+      spot.classList += 'spot';
+      spot.textContent = index;
+      var spotKeyframe = {
+        offsetPosition: '60% 30%',
+        offsetPath: 'ray(' + (index / 12) + 'turn closest-side contain)',
+        offsetDistance: '100%',
+        offsetRotate: '0deg',
+        offsetAnchor: '50% 50%',
+      };
+      container.appendChild(spot);
+      spot.animate([spotKeyframe, spotKeyframe], {fill: 'forwards'});
+    }
+
+    var savedTarget = container.removeChild(target);
+    container.appendChild(savedTarget);
+  </script>
+</body>
+</html>
+

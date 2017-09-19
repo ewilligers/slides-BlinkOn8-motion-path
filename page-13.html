@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="third_party/web-animations-js/web-animations.dev.js"></script>
+  <script src="third_party/motion-path-polyfill.min.js"></script>
+  <script src="navigation.js"></script>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    #container {
+      position: absolute;
+      left: 50%;
+      top: 10%;
+
+      width: 40%;
+      height: 80%;
+      border: 1px solid var(--graphics);
+    }
+    #large {
+      width: 240px;
+      height: 420px;
+      background-color: white;
+    }
+    #medium {
+      width: 140px;
+      height: 80px;
+      background-color: brown;
+    }
+    #small {
+      width: 24px;
+      height: 42px;
+      background-color: white;
+    }
+
+    #styles {
+      position: absolute;
+      left: 4%;
+      bottom: 14%;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="large"></div>
+    <div id="medium"></div>
+    <div id="small"></div>
+  </div>
+  <div id="styles">
+    offset-position: ..% ..%;<br>
+    offset-path: none; /* initial */<br>
+    offset-anchor: auto; /* initial, uses offset-position */
+  </div>
+  <script>
+    'use strict';
+    var staticKeyframe = {
+      offsetPath: 'none',
+      offsetAnchor: 'auto',
+    };
+    large.animate([staticKeyframe, staticKeyframe], {fill: 'forwards'});
+    medium.animate([staticKeyframe, staticKeyframe], {fill: 'forwards'});
+    small.animate([staticKeyframe, staticKeyframe], {fill: 'forwards'});
+
+    var keyframes = [
+      { offsetPosition: '0% 0%' },
+      { offsetPosition: '100% 0%' },
+      { offsetPosition: '100% 0%' },
+      { offsetPosition: '100% 100%' },
+      { offsetPosition: '100% 100%' },
+      { offsetPosition: '0% 100%' },
+      { offsetPosition: '0% 100%' },
+      { offsetPosition: '0% 0%' },
+      { offsetPosition: '0% 0%' },
+    ];
+    var timing = { duration: 20000, iterations: Infinity };
+    large.animate(keyframes, timing);
+    medium.animate(keyframes, timing);
+    small.animate(keyframes, timing);
+
+  </script>
+</body>
+</html>
+

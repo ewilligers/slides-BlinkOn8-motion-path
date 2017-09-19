@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="third_party/web-animations-js/web-animations.dev.js"></script>
+  <script src="third_party/motion-path-polyfill.min.js"></script>
+  <script src="navigation.js"></script>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    #container {
+      position: absolute;
+      left: calc(50% - 150px);
+      top: calc(20%);
+
+      width: 300px;
+      height: 100px;
+      border: 3px solid var(--graphics);
+    }
+    #target {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--accent-graphics);
+    }
+
+    #styles {
+      position: absolute;
+      left: 10%;
+      top: 5%;
+      font-size: 1.4em;
+    }
+
+    #notes {
+      position: absolute;
+      left: 10%;
+      top: 50%;
+      font-size: 1.4em;
+    }
+  </style>
+</head>
+<body>
+  <div id="styles">
+    offset-path: path("m 0 0 h 300 v 100 h -300 z");<br>
+    offset-distance: ...; /* animated */ 
+  </div>
+  <div id="notes">
+    m <x> <y> = move to, start subpath<br>
+    h <d> = horizontal line<br>
+    v <d> = vertical line<br>
+    z = line to start of subpath<br>
+    lower case = relative coordinates
+  </div>
+  <div id="container">
+    <div id="target"></div>
+  </div>
+  <script>
+    'use strict';
+    var staticKeyframe = {
+      offsetPosition: '0% 0%',
+      offsetPath: 'path("m 0 0 h 300 v 100 h -300 z")',
+      offsetAnchor: '50% 50%',
+    };
+    target.animate([staticKeyframe, staticKeyframe], {fill: 'forwards'});
+
+    var keyframes = [
+      { offsetDistance: '0%' },
+      { offsetDistance: '100%' }
+    ];
+    var timing = { duration: 4000, iterations: Infinity };
+    target.animate(keyframes, timing);
+  </script>
+</body>
+</html>
+

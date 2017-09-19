@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="navigation.js"></script>
+	<link rel="stylesheet" href="theme.css">
+
+  <style>
+    path {
+      stroke: white;
+      fill: none;
+    }
+
+    rect {
+      fill: red;
+      stroke: red;
+      opacity: 0;
+    }
+
+    svg {
+      position: absolute;
+      left: 60%;
+      top: 10%;
+    }
+
+  </style>
+</head>
+<body id="body">
+  <div>
+    <h1>History</h1>
+    <h2>SMIL &lt;animatePath&gt;</h2>
+    <h3>&bull; SVG only, not general HTML</h3>
+    <h3>&bull; Not supported in IE/Edge</h3>
+  </div>
+<svg width="400px" height="400px">
+
+  <path id="surface" d="
+M -700 270 C -600 200 -500 140 -700 180 C 0 250 -100 340  000 270
+M    0 270 C  100 200  200 0  300 100 C  100 250  600 340  700 270
+">
+    <animate id="a1" attributeName="d" values="
+M -700 270 C -600 200 -500 140 -700 180 C 0 250 -100 340  000 270
+M    0 270 C  100 200  200 0  300 100 C  100 250  600 340  700 270
+;
+M -700 270 C -600 200 -500 140 -700 180 C 0 250 -100 340  000 270
+M    0 270 C  100 200  200 0  300 100 C  100 250  600 340  700 270
+;
+M    0 270 C  100 200  200 0  300 100 C  100 250  600 340  700 270
+M  700 270 C  800 200  900 0 1000 100 C  800 250 1300 340 1400 270
+;
+" dur="10s" repeatCount="indefinite" />
+  </path>
+  <rect width="70" height="30" x="-35" y="-10">
+    <animateMotion id="move"   rotate="auto" dur="5s"  begin="0s; move.end + 5s"  >
+      <mpath xlink:href="#surface"/>
+    </animateMotion>
+
+    <animate id="visibility" attributeName="opacity" from="1" to="1" dur="5s"  begin="0s; move.end + 5s"  />
+
+<!--
+    <animate id="visibility" attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="10s" /> -->
+  </rect>
+<!--
+  <rect width="70" height="30" x="-35" y="-10">
+    <animateMotion id="move"   rotate="auto" dur="5s"  begin="-2s" repeatCount="indefinite">
+      <mpath xlink:href="#surface"/>
+    </animateMotion>
+  </rect>
+-->
+</svg>
+</body>
+</html>
+
