@@ -5,10 +5,11 @@ function navigate(e) {
 	var index = currentPage.lastIndexOf("/");
 
   function navigateTo(pageNumber) {
+    var numPages = 16;
     if (pageNumber < 1) {
       pageNumber = 1;
-    } else if (pageNumber > 17) {
-      pageNumber = 17;
+    } else if (pageNumber > numPages) {
+      pageNumber = numPages;
     }
   	window.location.href = currentPage.substr(0, index) + '/page-' + pageNumber + '.html';
   }
