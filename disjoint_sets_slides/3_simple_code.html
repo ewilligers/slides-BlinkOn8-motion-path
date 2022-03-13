@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="prismjs/prism.css">
+	<link rel="stylesheet" href="presentation.css">
+	<script src="prismjs/prism.js"></script>
+	<script src="union_find.js"></script>
+</head>
+<body>
+	<pre><code class="language-python center">
+def find(element):
+	parent = element.parent
+	if parent == element:
+		return element
+	return find(parent)
+
+def union(a, b):
+	a = find(a)
+	b = find(b)
+
+	b.parent = a
+	# OR a.parent = b
+	</code></pre>
+</body>
+</html>

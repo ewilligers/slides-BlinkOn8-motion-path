@@ -1,0 +1,61 @@
+:root {
+	background-color: black;
+	color: hsl(60, 75%, 75%);
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	overflow: hidden;
+}
+
+a {
+	color: hsl(60, 75%, 75%);
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
+
+svg {
+	width: 100%;
+	height: 100%;
+	stroke-width: 3px;
+	stroke: hsl(60, 75%, 75%);
+}
+
+svg text {
+	font-family: monospace;
+	text-anchor: middle;
+	dominant-baseline: middle;
+	stroke-width: 1px;
+
+	stroke: hsl(60, 75%, 75%);
+	fill: hsl(60, 75%, 75%);
+}
+
+svg marker path {
+	marker-end: none;
+	fill: hsl(60, 75%, 75%);
+}
+
+h1 {
+	font-size: 127px;
+}
+
+h2 {
+	font-size: 57px;
+}
+
+pre[class*=language-],code[class*=language-]
+ {
+	background-color: black;
+	font-size: 35px;
+}
+
+.center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+

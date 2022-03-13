@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="presentation.css">
+	<script src="union_find.js"></script>
+	<script src="animate_set_trees.js"></script>
+	<script>
+		USE_RANK = true;
+		timeStep = 1;
+
+		window.onload = () => {
+			generateElements();
+			const first = shuffle([0,2,4,6]).concat(shuffle([1, 5,7])).concat([3]);
+			const second = [16,15,14,13,12,11,10,9];
+			const merges = shuffle([17]).concat(first.flatMap((currentValue, index) => [currentValue, second[index]]));
+			animateMerges(merges);
+		};
+	</script>
+</head>
+<body>
+	<svg id="set_trees" viewbox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<marker id="arrow" viewBox="0 -5 10 10" refX="5" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+				<path d="M0,-2L4,0L0,2"></path>
+			</marker>
+		</defs>
+		<g id="background"></g>
+	</svg>
+	<h2 style="position: absolute; left: 45%; top: 10%">
+		Chains with length <em>n</em> may only<br>occur when the set size is at least <em>2<sup>n</sup></em>.
+	</h2>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="presentation.css">
+	<script src="union_find.js"></script>
+	<script src="animate_set_trees.js"></script>
+	<script>
+		USE_RANK = false;
+
+		window.onload = () => {
+			generateElements();
+			const merges = generateMerges(0, numNodes);
+			animateMerges(merges);
+		};
+	</script>
+</head>
+<body>
+	<svg id="set_trees" viewbox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<marker id="arrow" viewBox="0 -5 10 10" refX="5" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+				<path d="M0,-2L4,0L0,2"></path>
+			</marker>
+		</defs>
+		<g id="background"></g>
+	</svg>
+</body>
+</html>

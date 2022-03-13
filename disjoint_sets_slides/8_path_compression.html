@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="presentation.css">
+	<script src="union_find.js"></script>
+	<script src="animate_set_trees.js"></script>
+	<script>
+		USE_RANK = true;
+		maxRank = 8;
+		timeStep = 300;
+
+		window.onload = () => {
+			ranks = [6, 4, 2, 0, 8, 1, 3, 5, 7, -1000, 6, 4, 2, 0, 8, 1, 3, 5, 7];
+			parents = [8, 7, 6, 5, 4, 2, 1, 0, 4, 9,  10+8, 10+7, 10+6, 10+5, 10+4, 10+2, 10+1, 10+0, 10+4];
+			generateElements();
+
+			let count = 30;
+			function reparent(element, parent) {
+				parents[element] = parent;
+				const timing = calculateTiming(count);
+				count += 1;
+				const pathKeyframe = { 'd': linkingPath(calculateLocation(element), calculateLocation(parent), parent - element) };
+				arrows[element].animate(pathKeyframe, timing); 
+			}
+
+			reparent(0, 4);
+			reparent(10+3, 10+2);
+			reparent(7, 4);
+			reparent(10+5, 10+6);
+			reparent(1, 4);
+			reparent(10+2, 10+1);
+			reparent(6, 4);
+			reparent(10+6, 10+7);
+			reparent(2, 4);
+			reparent(10+1, 10+0);
+			reparent(5, 4);
+			reparent(10+7, 10+8);
+			reparent(3, 4);
+			reparent(10+0, 10+4);
+		};
+	</script>
+</head>
+<body>
+	<svg id="set_trees" viewbox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<marker id="arrow" viewBox="0 -5 10 10" refX="5" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+				<path d="M0,-2L4,0L0,2"></path>
+			</marker>
+		</defs>
+		<g id="background"></g>
+	</svg>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="prismjs/prism.css" />
+	<link rel="stylesheet" href="presentation.css">
+	<script src="prismjs/prism.js"></script>
+	<script src="union_find.js"></script>
+</head>
+<body>
+	<pre><code class="language-python">
+def find(element):
+	parent = element.parent
+	if parent == element:
+		return element
+	return element.parent = find(parent)
+
+def find(element):
+	parent = element.parent
+	if parent == element:
+		return element
+	element.parent = parent.parent # grandparent
+	return find(parent)
+	</code></pre>
+	<h2 style="position: absolute; left: 45%; top: 10%">
+		Avoid traversing a link to a<br>non-root node more than once.
+	</h2>
+</body>
+</html>
